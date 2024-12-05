@@ -573,7 +573,7 @@ const CORE_PARAMS_ARRAY = [
 // config starts here
 
 // this date will be the first shard that is processed
-const GA4_START_DATE = "2020-01-01";
+const GA4_START_DATE = "2024-12-01";
 
 // how many days should pass in order to deem an event 'final'
 // we recommend using 3 as Measurement Protocol hits can arrive 72 hours into the past
