@@ -29,7 +29,7 @@ const { lowerSQL } = require("../core/helpers");
 const customConfig = {
   // on a new or full build, this start date will be picked
 
-  GA4_START_DATE: "2020-01-01",
+  GA4_START_DATE: "2024-12-01",
 
   // custom definitions
   // a very complete list of all recommended and standard event parameters is
