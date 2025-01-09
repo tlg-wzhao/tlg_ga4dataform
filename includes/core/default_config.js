@@ -573,7 +573,7 @@ const CORE_PARAMS_ARRAY = [
 // config starts here
 
 // this date will be the first shard that is processed
-const GA4_START_DATE = "2024-12-01";
+const GA4_START_DATE = "2020-01-01";
 
 // how many days should pass in order to deem an event 'final'
 // we recommend using 3 as Measurement Protocol hits can arrive 72 hours into the past
@@ -590,6 +590,14 @@ const ASSERTIONS_SESSIONS_VALIDITY = true;
 const ASSERTIONS_TABLES_TIMELINESS = true; 
 const ASSERTIONS_TRANSACTION_ID_COMPLETENESS = true;
 const ASSERTIONS_USER_PSEUDO_ID_COMPLETENESS = true;
+
+
+// deduplicate transactions?
+const TRANSACTIONS_DEDUPE = false;
+
+// what column to use for tranasction running totals to use?
+// valid values: user_pseudo_id | user_id | <some valid column name>
+const TRANSACTION_TOTALS_UID = "user_pseudo_id";
 
 
 // ga4 event param config
@@ -684,7 +692,9 @@ const coreConfig = {
     SOCIAL_PLATFORMS_REGEX,
     CUSTOM_USER_PROPERTIES_ARRAY,
     CUSTOM_ITEM_PARAMS_ARRAY,
-    CUSTOM_URL_PARAMS_ARRAY
+    CUSTOM_URL_PARAMS_ARRAY,
+    TRANSACTIONS_DEDUPE,
+    TRANSACTION_TOTALS_UID
 }
 
 module.exports = {

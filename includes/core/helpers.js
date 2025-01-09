@@ -19,6 +19,20 @@
 const { coreConfig } = require("./default_config");
 const { customConfig } = require("../custom/config");
 
+
+/**
+ * Generates SQL for the qualify statement in the transactions table
+ * @param {boolean} tf - true or false, true: output, false: no output
+ * @returns {string} SQL fragment for qualify statement to dedupe transactions
+ */
+const generateTransactionsDedupeSQL = (tf) => {
+  if(tf) {
+        return `qualify duplicate_count = 1`
+  } else {
+     return ``
+  }
+}
+
 /**
  * Generates SQL for a single parameter unnest based on its configuration. By default, it will unnest from event_params column, but you cold change it to user_properties or items.item_params.
  * @param {Object} config - Parameter configuration object
@@ -545,6 +559,7 @@ const helpers = {
   getConfig,
   generateClickIdCoalesceSQL,
   generateClickIdCasesSQL,
+  generateTransactionsDedupeSQL
 };
 
 module.exports = {

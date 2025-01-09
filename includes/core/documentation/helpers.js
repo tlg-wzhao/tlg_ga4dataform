@@ -16,6 +16,8 @@
 
 const ga4Events = require("includes/core/documentation/ga4_events.json");
 const ga4Sessions = require("includes/core/documentation/ga4_sessions.json");
+const ga4Transactions = require("includes/core/documentation/ga4_transactions.json");
+
 const { helpers } = require("includes/core/helpers");
 const config = helpers.getConfig();
 
@@ -79,4 +81,5 @@ config.CUSTOM_ITEM_PARAMS_ARRAY.forEach((param) => {
 module.exports = {
   ga4Events,
   ga4Sessions,
+  ga4Transactions
 };
