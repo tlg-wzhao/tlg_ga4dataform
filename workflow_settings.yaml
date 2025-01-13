@@ -1,0 +1,10 @@
+defaultAssertionDataset: superform_assertion_307977422
+defaultDataset: superform_outputs_307977422
+defaultLocation: europe-west1
+defaultProject: gtm-k3vhstz-ztmwy
+vars:
+  GA4_DATASET: analytics_307977422
+  LOCAL_TIMEZONE: Europe/Brussels
+  OUTPUTS_DATASET: superform_outputs_307977422
+  QUALITY_DATASET: superform_quality_307977422
+  TRANSFORMATIONS_DATASET: superform_transformations_307977422
