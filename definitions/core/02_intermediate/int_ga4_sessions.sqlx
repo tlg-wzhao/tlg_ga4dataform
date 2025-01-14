@@ -29,6 +29,7 @@ config {
 js {
     const { helpers } = require("includes/core/helpers");
     const config = helpers.getConfig();
+    const brand = dataform.projectConfig.vars.BRAND;
 }
 
 /* incrementality */
@@ -161,7 +162,8 @@ add_meta_info as (
                                             'join_first.source_category',
                                             'first_traffic_source.term',
                                             'first_traffic_source.content',
-                                            'first_traffic_source.campaign_id'
+                                            'first_traffic_source.campaign_id',
+                                            brand
                                             )} as default_channel_grouping,
         ) first,
       (
@@ -175,7 +177,8 @@ add_meta_info as (
                                             'join_last.source_category',
                                             'last_traffic_source.term',
                                             'last_traffic_source.content',
-                                            'last_traffic_source.campaign_id'
+                                            'last_traffic_source.campaign_id',
+                                            brand
                                             )} as default_channel_grouping
       ) last
     ) session_source

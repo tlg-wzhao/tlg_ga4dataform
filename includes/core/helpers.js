@@ -18,6 +18,7 @@
 
 const { coreConfig } = require("./default_config");
 const { customConfig } = require("../custom/config");
+const { customHelpers } = require("../custom/custom_helpers");
 
 
 /**
@@ -316,7 +317,8 @@ const getDefaultChannelGroupingSQL = (
   category,
   term,
   content,
-  campaign_id
+  campaign_id,
+  brand
 ) => {
   return `
     case 
@@ -328,6 +330,20 @@ const getDefaultChannelGroupingSQL = (
           and (${medium} = '(none)' or ${medium} = '(not set)')
         ) 
         then 'Direct'
+
+      -- inject TLG custom channel attribution clauses
+      ${customHelpers.getTlgCustomChannelGroupingSQL(
+          custom_config,
+          source,
+          medium,
+          campaign,
+          category,
+          term,
+          content,
+          campaign_id,
+          brand
+      )}
+
       when 
         (
           regexp_contains(${source}, r"^(${custom_config.SOCIAL_PLATFORMS_REGEX})$")
