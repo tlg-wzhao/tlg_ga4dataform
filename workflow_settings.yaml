@@ -1,10 +1,11 @@
-defaultAssertionDataset: superform_assertion_307977422
-defaultDataset: superform_outputs_307977422
+defaultAssertionDataset: superform_assertion_307977422 #replace
+defaultDataset: superform_outputs_307977422 #replace
 defaultLocation: europe-west1
 defaultProject: gtm-k3vhstz-ztmwy
 vars:
-  GA4_DATASET: analytics_307977422
+  GA4_DATASET: analytics_307977422 #replace
   LOCAL_TIMEZONE: Europe/Brussels
-  OUTPUTS_DATASET: superform_outputs_307977422
-  QUALITY_DATASET: superform_quality_307977422
-  TRANSFORMATIONS_DATASET: superform_transformations_307977422
+  OUTPUTS_DATASET: superform_outputs_307977422 #replace
+  QUALITY_DATASET: superform_quality_307977422 #replace
+  TRANSFORMATIONS_DATASET: superform_transformations_307977422 #replace
+  BRAND: SC #replace with brand code (e.g. SC, for Scarosso)

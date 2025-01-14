@@ -639,7 +639,8 @@ const CLICK_IDS_ARRAY = [
   // note: we never overwrite MEDIUM, CAMPAIGN if explitly set. We only overwrite when campaign is "(organic)", "(referral)" or NULL
   {name:'gclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
   {name:'dclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
-  {name:'srsltid', source:"google", medium:"organic", campaign: "Shopping Free Listings", sources:["url","collected_traffic_source"] },
+    // temporarily remove srsltid due to Google appending the param also
+    //   {name:'srsltid', source:"google", medium:"organic", campaign: "Shopping Free Listings", sources:["url","collected_traffic_source"] }, 
   {name:'gbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"]},
   {name:'wbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"] },
   {name:'msclkid', source:"bing", medium:"cpc", campaign: "(not set)", sources:["url"] }
