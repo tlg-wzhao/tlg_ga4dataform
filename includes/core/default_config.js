@@ -1,17 +1,21 @@
 /*
-    This file is part of "GA4 Dataform Package".
-    Copyright (C) 2023-2024 Superform Labs <support@ga4dataform.com>
-    Artem Korneev, Jules Stuifbergen,
-    Johan van de Werken, Krisztián Korpa,
-    Simon Breton
+	This file is part of "GA4 Dataform Package".
+	Copyright (C) 2023-2024 Superform Labs <support@ga4dataform.com>
+	Artem Korneev, Jules Stuifbergen,
+	Johan van de Werken, Krisztián Korpa,
+	Simon Breton
 
-    Do not redistribute this version! The open source version will become
-    available at github.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, version 3 of the License.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License in the LICENSE.txt file for more details.
 
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 
@@ -639,8 +643,7 @@ const CLICK_IDS_ARRAY = [
   // note: we never overwrite MEDIUM, CAMPAIGN if explitly set. We only overwrite when campaign is "(organic)", "(referral)" or NULL
   {name:'gclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
   {name:'dclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
-    // temporarily remove srsltid due to Google appending the param also
-    //   {name:'srsltid', source:"google", medium:"organic", campaign: "Shopping Free Listings", sources:["url","collected_traffic_source"] }, 
+  {name:'srsltid', source:"google", medium:"organic", campaign: "Shopping Free Listings", sources:["url","collected_traffic_source"] },
   {name:'gbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"]},
   {name:'wbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"] },
   {name:'msclkid', source:"bing", medium:"cpc", campaign: "(not set)", sources:["url"] }
