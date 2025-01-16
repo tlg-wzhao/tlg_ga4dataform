@@ -56,10 +56,13 @@ const getTlgCustomChannelGroupingSQL = (
 
       -- begin TLG brand-level custom mapping. Reminder to configure the correct brand code in workflow_settings.yaml.
 
-      -- Scarosso (SC)
-      when '${brand}' = 'SC'
-        and (regexp_contains(${source}, r".*charles.*") or ${medium} = 'whatsapp')
-        then 'Email'
+       when '${brand}' = 'LN'
+        and regexp_contains(${source}, r".*emarsy.*")
+       then 'CRM'
+
+       when '${brand}' = 'BB'
+        and (regexp_contains(${source}, r".*email.*") and regexp_contains(${medium}, r".*journeys.*"))
+       then 'CRM'
 
       -- end TLG brand-level custom mapping
       
@@ -68,6 +71,10 @@ const getTlgCustomChannelGroupingSQL = (
 
       when ${source} = 'mapp' 
         or ${source} = 'barilliance' 
+        or ${source} = 'emarsys'
+        or regexp_contains(${source}, r".*charles.*") or ${medium} = 'whatsapp'
+
+        or regexp_contains(${medium}, r"^(emarsys|mapp|triggered|crm)$")
         then 'Email'
 
       when ${source} = 'criteo' 
@@ -82,6 +89,9 @@ const getTlgCustomChannelGroupingSQL = (
 
       when ${source} = 'social' 
         then 'Organic Social'
+
+      when ${source} = 'brooksbrothers.com' and ${medium} = 'redirect'
+        then 'US Website'
 
       -- end TLG general custom mapping
 

@@ -1,0 +1,34 @@
+config {
+  type: "table",
+  tags: [dataform.projectConfig.vars.GA4_DATASET,"transactions","outputs"],
+  schema: dataform.projectConfig.vars.OUTPUTS_DATASET,
+  description: "transactions table with nested items, transaction totals and running totals (based on user_pseudo_id)",
+  bigquery: {
+    partitionBy: "transaction_date"
+  },
+    columns: require("includes/core/documentation/helpers.js").ga4Transactions
+}
+
+js {
+    const { helpers } = require("includes/core/helpers");
+    const config = helpers.getConfig();
+}
+
+
+with src as (
+    select
+        t.* except (items, item_totals, net_item_totals, number_of_refunds, refund_info)
+    from ${ref("ga4_transactions")} t
+),
+
+convert as (
+    select
+        t.*,
+        round(t.ecommerce.purchase_revenue / er.exchange_rate_amount,2) as purchase_revenue_in_eur,
+    from src t
+    left join ${ref("currency_exchange_rates")} (cast('${config.GA4_START_DATE}' as date)) er
+        on t.transaction_date = ref_date
+        and t.currency = er.currency_code
+)
+
+select * from convert
