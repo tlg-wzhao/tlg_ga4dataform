@@ -322,16 +322,8 @@ const getDefaultChannelGroupingSQL = (
 ) => {
   return `
     case 
-      when 
-        (
-          coalesce(${source}, ${medium}, ${campaign}, ${term}, ${content}, ${campaign_id}) is null
-        ) or (
-          ${source} = 'direct'
-          and (${medium} = '(none)' or ${medium} = '(not set)')
-        ) 
-        then 'Direct'
 
-      -- inject TLG custom channel attribution clauses
+      -- inject TLG custom channel attribution clauses. Make it take precedence over the defaults
       ${customHelpers.getTlgCustomChannelGroupingSQL(
           custom_config,
           source,
@@ -344,6 +336,15 @@ const getDefaultChannelGroupingSQL = (
           brand
       )}
 
+
+      when 
+        (
+          coalesce(${source}, ${medium}, ${campaign}, ${term}, ${content}, ${campaign_id}) is null
+        ) or (
+          ${source} = 'direct'
+          and (${medium} = '(none)' or ${medium} = '(not set)')
+        ) 
+        then 'Direct'
       when 
         (
           regexp_contains(${source}, r"^(${custom_config.SOCIAL_PLATFORMS_REGEX})$")

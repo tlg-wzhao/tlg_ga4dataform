@@ -56,7 +56,37 @@ const customConfig = {
   //    { name: "event_value", type: "decimal" },
   //    { name: "event_value", type: "string", renameTo: "event_value_string" }
   // ],
-  CUSTOM_EVENT_PARAMS_ARRAY: [],
+  CUSTOM_EVENT_PARAMS_ARRAY: [
+    { name: "shipping_country", type: "string" },
+    { name: "website_language", type: "string" },
+    { name: "page_type", type: "string" },
+    { name: "list_category_id", type: "string" },
+    { name: "list_category_name", type: "string" }
+  ],
+
+  // map here the custom event params to be added in session tables - first param in session
+  CUSTOM_EVENT_PARAMS_ARRAY_IN_SESSIONS_FIRST: [
+    { name: "shipping_country", type: "string" }
+  ],
+
+  // map here the custom event params to be added in session tables - last param in session
+  CUSTOM_EVENT_PARAMS_ARRAY_IN_SESSIONS_LAST: [
+    { name: "shipping_country", type: "string" }
+  ],
+  
+  // item custom dimensions and metrics
+  // these will appear in `items.item_params_custom.*`
+  // example:
+  // CUSTOM_ITEM_PARAMS_ARRAY: [
+  //    { name: "stock_status", type: "string" }
+  // ]
+  CUSTOM_ITEM_PARAMS_ARRAY : [
+    { name: "category_id", type: "string" },
+    { name: "category_name", type: "string" },
+    { name: "variation_id", type: "string" },
+    { name: "size", type: "string" },
+    { name: "season", type: "string" }
+  ],
 
   // user properties
   // example:
@@ -64,19 +94,6 @@ const customConfig = {
   //    { name: "lifetime_value",   type: "decimal" }
   // ],
   CUSTOM_USER_PROPERTIES_ARRAY: [],
-
-  // item custom dimensions and metrics
-  // these will appear in `items.item_params_custom.*`
-  // example:
-  // CUSTOM_ITEM_PARAMS_ARRAY: [
-  //    { name: "stock_status", type: "string" }
-  // ]
-  CUSTOM_ITEM_PARAMS_ARRAY: [],
-
-  // URL parameters to extract to own column
-  // (note: all standard utm params are already extracted to `url_params`)
-  // custom url params will appear in `url_params_custom`
-  // (this does NOT support the "type" key: only strings are supported)
 
   // Examples based on internal search engine params:
   //   CUSTOM_URL_PARAMS_ARRAY: [
@@ -86,30 +103,29 @@ const customConfig = {
   //   ],
   CUSTOM_URL_PARAMS_ARRAY: [],
 
-    CLICK_IDS_ARRAY: [
-    // how to classify click ids (from collected_traffic_source) when there is no source/medium/campaign found?
-    // (defaults should be fine)
-
-    // name: from collected_traffic_source
-    // medium and campaign: fill in with this value when needed (meaning: when found to be organic/referral)
-    // note: we never overwrite MEDIUM, CAMPAIGN if explitly set. We only overwrite when campaign is "(organic)", "(referral)" or NULL
-    {name:'gclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
-    {name:'dclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
-
-        // temporarily remove srsltid due to Google appending the param also to Organic Search results.
-        //   {name:'srsltid', source:"google", medium:"organic", campaign: "Shopping Free Listings", sources:["url","collected_traffic_source"] }, 
-        
-    {name:'gbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"]},
-    {name:'wbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"] },
-    {name:'msclkid', source:"bing", medium:"cpc", campaign: "(not set)", sources:["url"] }
-    ],
-
   // filters
   // array: list the event names you want to exclude from the events table 
   EVENTS_TO_EXCLUDE: [],
   // arrays: list the hostnames you want to exclude (or include) from the events table
   HOSTNAME_EXCLUDE: [],
   HOSTNAME_INCLUDE_ONLY: [],
+
+  CLICK_IDS_ARRAY: [
+  // how to classify click ids (from collected_traffic_source) when there is no source/medium/campaign found?
+
+  // name: from collected_traffic_source
+  // medium and campaign: fill in with this value when needed (meaning: when found to be organic/referral)
+  // note: we never overwrite MEDIUM, CAMPAIGN if explitly set. We only overwrite when campaign is "(organic)", "(referral)" or NULL
+  {name:'gclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
+  {name:'dclid', source:"google", medium:"cpc", campaign: "(not set)", sources:["url","collected_traffic_source"] },
+
+      // temporarily remove srsltid due to Google appending the param also to Organic Search results.
+      //   {name:'srsltid', source:"google", medium:"organic", campaign: "Shopping Free Listings", sources:["url","collected_traffic_source"] }, 
+      
+  {name:'gbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"]},
+  {name:'wbraid', source:"google",  medium:"cpc", campaign: "(not set)", sources:["url"] },
+  {name:'msclkid', source:"bing", medium:"cpc", campaign: "(not set)", sources:["url"] }
+  ],
 
   // attribution
   // if a visitors lands on your site without a source, we look back to
